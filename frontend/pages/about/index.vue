@@ -12,6 +12,7 @@ export default {
     return {
       fio: null,
       inform: null,
+      error: null,
     };
   },
   async mounted() {

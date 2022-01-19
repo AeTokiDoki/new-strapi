@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contacts",
+  "info": {
+    "name": "contact"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "tel": {
+      "required": true,
+      "unique": true,
+      "type": "biginteger"
+    },
+    "insta": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "telegram": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "wk": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}

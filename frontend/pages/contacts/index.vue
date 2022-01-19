@@ -4,20 +4,48 @@
 
     <h1>Контакты</h1>
     <div>
-      <p><b>Почта:</b> example@mail.ru</p>
-      <p><b>Телефон:</b> +993555666</p>
+      <p><b>Почта:</b> {{ email }}</p>
+      <p><b>Телефон:</b> {{ tel }}</p>
       <p>
-        <nuxt-link class="link links" to="#">WK</nuxt-link>
+        <a class="link links" :href="insta">Instagram</a>
       </p>
       <p>
-        <nuxt-link class="link links" to="#">Instagram</nuxt-link>
+        <a class="link links" :href="wk">wk</a>
       </p>
       <p>
-        <nuxt-link class="link links" to="#">Telegram</nuxt-link>
+        <a class="link links" :href="telegram">telegram</a>
       </p>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      email: null,
+      tel: null,
+      insta: null,
+      wk: null,
+      telegram: null,
+      error: null,
+    };
+  },
+  async mounted() {
+    try {
+      this.contacts = await this.$strapi.$contacts.find();
+      this.email = this.contacts[0].email;
+      this.tel = this.contacts[0].tel;
+      this.insta = this.contacts[0].insta;
+      this.wk = this.contacts[0].wk;
+      this.telegram = this.contacts[0].telegram;
+    } catch (error) {
+      this.error = error;
+      console.log(this.error);
+    }
+  },
+};
+</script>
 
 <style scoped>
 .link {
