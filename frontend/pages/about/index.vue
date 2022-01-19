@@ -1,21 +1,31 @@
 <template>
   <div class="app">
     <nuxt-link class="link" to="/">Назад</nuxt-link>
-    <h1>Обо мне</h1>
-    <div>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-      voluptatem assumenda corrupti aperiam consequuntur animi doloribus veniam
-      expedita cupiditate, laudantium magni vel perferendis quibusdam commodi
-      ipsum facere eum recusandae. Praesentium!
-    </div>
-    <div>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-      voluptatem assumenda corrupti aperiam consequuntur animi doloribus veniam
-      expedita cupiditate, laudantium magni vel perferendis quibusdam commodi
-      ipsum facere eum recusandae. Praesentium!
-    </div>
+    <h1>{{ fio }}</h1>
+    <div>{{ inform }}</div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      fio: null,
+      inform: null,
+    };
+  },
+  async mounted() {
+    try {
+      this.abouts = await this.$strapi.$abouts.find();
+      this.fio = this.abouts[0].FIO;
+      this.inform = this.abouts[0].inform;
+    } catch (error) {
+      this.error = error;
+      console.log(this.error);
+    }
+  },
+};
+</script>
 
 <style scoped>
 .link {
