@@ -37,6 +37,7 @@ export default {
   ],
 
   strapi: {
+    entities: ["mains"],
     url: "http://localhost:1337"
   },
 
