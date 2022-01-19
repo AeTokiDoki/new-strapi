@@ -4,7 +4,7 @@
       <h1>Главная страница</h1>
       <h2>{{ name }}</h2>
       <div>
-        <img :src="img" alt="avatar" />
+        <img :src="img" />
       </div>
 
       <nuxt-link class="link" to="/about">Обо мне</nuxt-link>
@@ -26,7 +26,9 @@ export default {
     try {
       this.mains = await this.$strapi.$mains.find();
       this.name = this.mains[0].name;
-      this.img = this.mains[0].photo;
+      const url = this.mains[0].photo[0].url;
+      this.img = `http://localhost:1337${url}`;
+      console.log(this.mains[0].photo);
     } catch (error) {
       this.error = error;
       console.log(this.error);
@@ -63,7 +65,7 @@ h2 {
   color: tomato;
 }
 img {
-  height: 20vh;
-  width: 20vh;
+  height: 253px;
+  width: 253px;
 }
 </style>
